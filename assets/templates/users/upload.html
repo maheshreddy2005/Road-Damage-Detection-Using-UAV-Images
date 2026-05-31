@@ -1,0 +1,89 @@
+{% extends 'users/userbase.html' %}
+
+{% block title %}
+Road Damage Detection
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Road Damage Detection</h2>
+
+    <!-- IMAGE UPLOAD -->
+    <div class="card mb-5 shadow">
+        <div class="card-header bg-dark text-white">
+            Upload Image Detection
+        </div>
+        <div class="card-body">
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <input type="file" name="image" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Analyze Image
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- LIVE CAMERA -->
+    <div class="card shadow">
+        <div class="card-header bg-success text-white">
+            Live Camera Detection (OpenCV)
+        </div>
+
+        <div class="card-body text-center">
+
+            <button id="startBtn" class="btn btn-success me-2">
+                ▶ Start Live Detection
+            </button>
+
+            <button id="stopBtn" class="btn btn-danger" disabled>
+                ⏹ Stop Live Detection
+            </button>
+
+            <div class="mt-4">
+                <img
+                    id="liveFeed"
+                    class="img-fluid rounded border d-none"
+                    style="max-height: 480px;"
+                    alt="Live Camera Feed"
+                >
+            </div>
+
+            <p class="mt-3 text-muted">
+                Live detection starts only when you click the button
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const startBtn = document.getElementById("startBtn");
+    const stopBtn = document.getElementById("stopBtn");
+    const liveFeed = document.getElementById("liveFeed");
+
+    startBtn.onclick = function () {
+        liveFeed.src = "{% url 'live_feed' %}";
+        liveFeed.classList.remove("d-none");
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+    };
+
+    stopBtn.onclick = function () {
+        liveFeed.src = "";
+        liveFeed.classList.add("d-none");
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+    };
+</script>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'users/userbase.html' %}
+
+{% block title %}
+    User Home
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <!-- Hero Section -->
+    <div class="jumbotron text-center bg-light p-5 rounded shadow">
+        <h1 class="display-4 mb-3">Welcome to the Road Damage Detection System</h1>
+        <p class="lead">
+            This tool helps identify road damages such as cracks, potholes, and other deteriorations using AI-powered image analysis.
+        </p>
+        <hr class="my-4">
+        <p>
+            You can either upload an image of the road or use the live camera feed to detect issues in real time.
+        </p>
+    </div>
+
+    <!-- How it Works Section -->
+    <div class="card mb-4 shadow">
+        <div class="card-header bg-primary text-white">
+            How Road Damage Detection Works
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>Upload a road image or use the live camera feed.</li>
+                <li>Our AI model analyzes the image and identifies damages like cracks, potholes, and other surface issues.</li>
+                <li>The system highlights the damaged areas with bounding boxes and provides a confidence percentage for each type.</li>
+                <li>Additionally, it classifies the road condition into <strong>Good</strong>, 
+                <li>These insights can help city planners, maintenance teams, and engineers take timely action.</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
